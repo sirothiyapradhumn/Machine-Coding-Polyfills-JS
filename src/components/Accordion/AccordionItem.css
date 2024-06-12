@@ -1,0 +1,41 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+  }
+  
+  .title-container{
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .openCloseBtn {
+    position: absolute;
+    right: 0%;
+  }
+  
+  .accordion-item {
+    margin-bottom: 10px;
+    border: 1px solid #d0d0d0;
+    border-radius: 3%;
+    background-color: #f0f0f0;
+  }
+  
+  .accordion-info {
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+  }
+  
+  .open {
+    max-height: 100px;
+  }
+  
+  .checkbox-container{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
