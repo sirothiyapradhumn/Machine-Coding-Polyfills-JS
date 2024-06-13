@@ -7,7 +7,7 @@ const Cart = ({ data }) => {
       <ul>
         {data.length >= 1
           ? data.map((item) => {
-              return <li>{item.title}</li>;
+              return <li key={item.id}>{item.title}</li>;
             })
           : 'EmptytCart'}
       </ul>

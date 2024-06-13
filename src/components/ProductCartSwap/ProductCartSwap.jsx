@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './productCartSwap.css';
 import Products from './products/Products';
 import Cart from './cart/Cart';
@@ -23,9 +23,12 @@ function ProductCartSwap() {
     }
   };
 
-  const handleCart = () => {
-    const filterCheckProduct = products.filter((product) => product.check);
-    setCartData((prev) => ([...prev, ...filterCheckProduct]));
+  const handleCart = useCallback(() => {
+    setCartData((prev) => {
+      const exisitingID = new Set(prev.map((ele) => ele.id));
+      const filterCheckProduct = products.filter((product) => product.check && !exisitingID.has(product.id));
+      return [...prev, ...filterCheckProduct];
+    })
     const resetData = products.map((item) => {
       if (item.check) {
         return { ...item, check: false };
@@ -33,11 +36,12 @@ function ProductCartSwap() {
       return { ...item };
     });
     setProducts(resetData);
-  };
+  }, [setCartData, products]);
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
   return (
     <div className="mainContainer">
       <div className="btnContianr">
